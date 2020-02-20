@@ -4,15 +4,32 @@
       <div id="limit-number">
         <h1>10</h1>
       </div>
-      <div id="name"></div>
-      <div id="hit-number"></div>
-      <div id="hit-button"></div>
+      <div id="name">
+        <h1>{{nama}}</h1>
+      </div>
+      <div id="hit-number">
+        <form action>
+          <input type="number" placeholder="hit number" />
+        </form>
+      </div>
+      <div id="hit-button">
+        <span>PUSH</span>
+      </div>
+      <div id="console-anime">
+        <img src="https://files.gamebanana.com/img/ico/sprays/bomberman_victory2.gif" alt />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      nama: localStorage.nama
+    };
+  }
+};
 </script>
 
 <style>
@@ -25,6 +42,7 @@ export default {};
   opacity: 1;
 }
 #box-console {
+  text-align: center;
   display: flex;
   flex-direction: column;
   padding: 3em;
@@ -34,8 +52,34 @@ export default {};
   margin: 0 auto;
   border-radius: 3em;
   width: 30em;
-  height: 60em;
+  height: 50em;
 }
-/* https://66.media.tumblr.com/036d749ffaf593df295bf18420bc2614/tumblr_or59maxzR61vz9r4no1_500.gifv */
-/* https://66.media.tumblr.com/595e363f481d79d5f0be48342082b0df/tumblr_ordoc7AzwS1via0slo6_500.gifv */
+#name h1 {
+  font-size: 5em;
+}
+#limit-number h1 {
+  font-size: 5em;
+}
+#hit-number {
+  margin: 10px auto;
+  border: 1px solid black;
+  width: 10em;
+}
+#console-anime {
+  text-align: center;
+}
+#hit-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2em 0px;
+  width: 100%;
+  height: 5em;
+  background-color: #e67e22;
+  /* border-radius: 50%; */
+}
+#hit-button span {
+  font-size: 2em;
+}
 </style>
