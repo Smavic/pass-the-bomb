@@ -6,8 +6,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
 
+Vue.config.productionTip = false
+// eslint-disable-next-line
+Vue.prototype.$socket = io.connect("http://localhost:3000")
 new Vue({
   router,
   store,

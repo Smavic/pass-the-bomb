@@ -1,15 +1,30 @@
-var app = require('express')();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+// if (process.env.NODE_ENV === "development") {
+//   require('dotenv').config()
+// }
 
-app.get('/', function (req, res) {
-  res.send('<h1>Hello world</h1>');
-});
+const express = require('express')
+const app = express()
+const cors = require('cors')
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
+const port = process.env.PORT || 3000
+
+const routes = require('./routes/index')
+app.use(cors())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use('/', routes)
 
 io.on('connection', function (socket) {
-  console.log('a user connected');
-});
+  console.log('socket connected <=====================')
+  socket.on('hitPush', function (params) {
+    io.emit('pengurangHit', params)
+    console.log(params, '<<<<<<<<< ini dari client di server ')
 
-http.listen(3000, function () {
-  console.log('listening on *:3000');
-});
+  })
+})
+
+server.listen(port, console.log(`server is running on ${port}`))
+
+module.exports = app
