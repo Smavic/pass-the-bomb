@@ -38,8 +38,8 @@ export default {
         url: `${server}/play/input`,
         data: { nama: this.nama }
       })
+        // eslint-disable-next-line
         .then(({ data }) => {
-          console.log(data), "======================";
           localStorage.setItem("nama", this.nama);
           this.$router.push({
             name: "Game"

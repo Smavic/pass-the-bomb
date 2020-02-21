@@ -2,19 +2,19 @@
   <div id="back-game">
     <div id="box-console">
       <div id="limit-number">
-        <h1>10</h1>
+        <h1>{{numberHit}}</h1>
       </div>
       <div id="name">
         <h1>{{nama}}</h1>
       </div>
       <div id="hit-number">
         <form action>
-          <input type="number" placeholder="hit number" />
+          <input type="number" placeholder="hit number" v-model="angkaHit" />
         </form>
       </div>
-      <div id="hit-button">
+      <button type="button" id="hit-button" @click="hitPush">
         <span>PUSH</span>
-      </div>
+      </button>
       <div id="console-anime">
         <img src="https://files.gamebanana.com/img/ico/sprays/bomberman_victory2.gif" alt />
       </div>
@@ -26,8 +26,39 @@
 export default {
   data() {
     return {
-      nama: localStorage.nama
+      nama: localStorage.nama,
+      angkaHit: null,
+      temp: 0
     };
+  },
+  computed: {
+    numberHit() {
+      // if (this.$store.state.data <= 0) {
+      //   this.$router.push("/lose");
+      // }
+      return this.$store.state.data;
+    }
+  },
+  created() {
+    // if (this.temp > 0) {
+    //   this.$store.state.data = this.temp;
+    // } else {
+    //   this.$store.state.data = Math.floor(Math.random() * Math.floor(10)) + 1;
+    //   this.temp = this.$store.state.data;
+    // }
+    this.$store.state.data = 10;
+  },
+  mounted() {
+    this.$socket.on("pengurangHit", params => {
+      this.$store.state.data -= params;
+    });
+  },
+  methods: {
+    hitPush() {
+      // let angka = this.$store.state.data - this.angkaHit;
+      // this.$store.state.data = angka;
+      this.$socket.emit("hitPush", this.angkaHit);
+    }
   }
 };
 </script>
