@@ -5,9 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-<<<<<<< HEAD
-    data: null
-=======
+    data: null,
     isLogin: false,
     nickname: null,
     socket: null,
@@ -34,7 +32,6 @@ export default new Vuex.Store({
     getBomb(state) {
       return state.bomb;
     }
->>>>>>> game logic
   },
   mutations: {
     login(state, nickname) {
