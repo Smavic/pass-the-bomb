@@ -1,12 +1,5 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-=======
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
->>>>>>> 7d3e5393af1238c35d798a452e618d92e056d5d4
     <router-view />
   </div>
 </template>

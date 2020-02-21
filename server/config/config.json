@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "postgres",
-<<<<<<< HEAD
     "password": "postgres",
-=======
-    "password": null,
->>>>>>> 7d3e5393af1238c35d798a452e618d92e056d5d4
     "database": "pass-the-bomb_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
