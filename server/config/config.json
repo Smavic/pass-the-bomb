@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": null,
+    "database": "pass-the-bomb_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": null,
+    "password": null,
+    "database": null,
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
