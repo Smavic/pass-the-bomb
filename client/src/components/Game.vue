@@ -2,21 +2,31 @@
   <div id="back-game">
     <div id="box-console">
       <div id="limit-number">
-        <h1>{{numberHit}}</h1>
+        <h1>{{ numberHit }}</h1>
       </div>
       <div id="name">
-        <h1>{{nama}}</h1>
+        <h1>{{ nama }}</h1>
       </div>
       <div id="hit-number">
         <form action>
-          <input type="number" placeholder="hit number" v-model="angkaHit" />
+          <input
+            type="number"
+            min="1"
+            max="3"
+            placeholder="hit number"
+            v-model="angkaHit"
+            style="width: 100%"
+          />
         </form>
       </div>
-      <button type="button" id="hit-button" @click="hitPush">
+      <button type="button" id="hit-button" @click="hitPush" :disabled="isDisabled">
         <span>PUSH</span>
       </button>
       <div id="console-anime">
-        <img src="https://files.gamebanana.com/img/ico/sprays/bomberman_victory2.gif" alt />
+        <img
+          src="https://files.gamebanana.com/img/ico/sprays/bomberman_victory2.gif"
+          alt
+        />
       </div>
     </div>
   </div>
@@ -24,12 +34,13 @@
 
 <script>
 import backsound from "../assets/20 - Robotnik.mp3";
-// import hitAudio from "../assets/hit.mp3";
+import hitAudio from "../assets/hit.mp3";
+import Swal from 'sweetalert2';
 export default {
   data() {
     return {
       nama: localStorage.nama,
-      angkaHit: null,
+      angkaHit: 1,
       temp: 0
     };
   },
@@ -39,6 +50,9 @@ export default {
       //   this.$router.push("/lose");
       // }
       return this.$store.state.data;
+    },
+    isDisabled() {
+      return this.$store.state.data <= 0;
     }
   },
   created() {
@@ -48,7 +62,7 @@ export default {
     //   this.$store.state.data = Math.floor(Math.random() * Math.floor(10)) + 1;
     //   this.temp = this.$store.state.data;
     // }
-    this.$store.state.data = 10;
+    this.$store.state.data = 17;
   },
   mounted() {
     let backAudio = new Audio(backsound);
@@ -61,7 +75,16 @@ export default {
     hitPush() {
       // let angka = this.$store.state.data - this.angkaHit;
       // this.$store.state.data = angka;
+      const hitSound = new Audio(hitAudio);
+      hitSound.play();
       this.$socket.emit("hitPush", this.angkaHit);
+      if (this.$store.state.data - this.angkaHit <= 0) {
+        this.isDisabled = true;
+        Swal.fire({
+          icon: "error",
+          title: "You Lose!",
+        });
+      }
       // let hitButton = new Audio(hitAudio);
       // hitButton.play();
     }
