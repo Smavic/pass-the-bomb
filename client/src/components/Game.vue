@@ -62,7 +62,7 @@ export default {
     //   this.$store.state.data = Math.floor(Math.random() * Math.floor(10)) + 1;
     //   this.temp = this.$store.state.data;
     // }
-    this.$store.state.data = 10;
+    this.$store.state.data = 17;
   },
   mounted() {
     let backAudio = new Audio(backsound);
@@ -85,9 +85,6 @@ export default {
           title: "You Lose!",
         });
       }
-      // if (this.$store.state.data <= 0) {
-      //   this.$store.state.data = 0
-      // }
       // let hitButton = new Audio(hitAudio);
       // hitButton.play();
     }
