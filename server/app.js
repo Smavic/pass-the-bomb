@@ -21,7 +21,6 @@ io.on('connection', function (socket) {
   socket.on('hitPush', function (params) {
     io.emit('pengurangHit', params)
     console.log(params, '<<<<<<<<< ini dari client di server ')
-
   })
 })
 
