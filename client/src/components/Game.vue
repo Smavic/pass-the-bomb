@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import backsound from "../assets/20 - Robotnik.mp3";
 export default {
   data() {
     return {
@@ -49,14 +50,18 @@ export default {
     this.$store.state.data = 10;
   },
   mounted() {
+    let backAudio = new Audio(backsound);
+
     this.$socket.on("pengurangHit", params => {
       this.$store.state.data -= params;
     });
+    backAudio.play();
   },
   methods: {
     hitPush() {
       // let angka = this.$store.state.data - this.angkaHit;
       // this.$store.state.data = angka;
+
       this.$socket.emit("hitPush", this.angkaHit);
     }
   }
