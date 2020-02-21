@@ -29,3 +29,5 @@ Router Player :
 | ------ | ----------- | --------------- |
 | post   | /play/input | add data Player |
 
+
+- link:  `https://pass-the-bomb-57731.firebaseapp.com`
